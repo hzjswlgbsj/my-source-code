@@ -14,7 +14,8 @@ linkedList.insert('f', 'e');
 
 // 当前队列中的元素
 console.log('当前队列中的元素', linkedList.display());
-
+console.log('删除f元素所在的节点', linkedList.remove('a'));
+console.log('删除f所在节点后当前队列中的元素', linkedList.display());
 
 console.log('----------------接下来测试用队列来实现基数排序-----------------')
 // 基数排序是非比较排序算法，算法的时间复杂度为O(n)。相比于快速排序的O(nlgn),从表
