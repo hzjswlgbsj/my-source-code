@@ -20,3 +20,9 @@ console.log('-----------删除性别-----------');
 dictionary.remove('gender')
 console.log('删除性别后的字典:');
 dictionary.showAll()
+
+console.log('字典中的元素个数为：', dictionary.count())
+console.log('清空字典：')
+dictionary.clear()
+console.log('清空后的字典元素个数为：', dictionary.count())
+
