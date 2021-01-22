@@ -2,7 +2,9 @@ import Node from './Node';
 interface IBST {
   root: any;
   insert: (data: any) => void; // 向二叉查找树中插入值
-  // order: () => void; // 排序
+  inOrder: (node: Node) => void; // 中序遍历
+  preOrder: (node: Node) => void; // 先序遍历
+  postOrder: (node: Node) => void; // 后序遍历
 }
 
 // 二叉查找树
@@ -33,5 +35,26 @@ export class BST implements IBST{
         }
       }
     }
+  }
+  public inOrder(node: Node) {
+    if (!(node == null)) {
+      this.inOrder(node.left);       
+      node.show();  
+      this.inOrder(node.right);    
+    } 
+  }
+  public preOrder(node: Node) {
+    if (!(node == null)) {    
+      node.show()
+      this.preOrder(node.left);       
+      this.preOrder(node.right);    
+    } 
+  }
+  public postOrder(node: Node) {
+    if (!(node == null)) {    
+      this.postOrder(node.left);       
+      this.postOrder(node.right);
+      node.show()
+    } 
   }
 }
