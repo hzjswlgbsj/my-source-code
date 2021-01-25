@@ -5,5 +5,6 @@
 // import './chapter6/test-linkedlist';
 // import './chapter7/test-dictionary';
 // import './chapter8/test-hashtable';
-import './chapter9/test-set';
+// import './chapter9/test-set';
+import './chapter10/test-bst';
 document.title = '测试专用'

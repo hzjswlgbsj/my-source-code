@@ -12,12 +12,12 @@ export class BST implements IBST{
   public root: any = null;
 
   public insert(data: any) {
-    var node = new Node(data, null, null);
+    const node = new Node(data, null, null);
     if (this.root == null) {
       this.root = node;
     } else {
-      var current = this.root;
-      var parent;
+      let current = this.root;
+      let parent;
       while (true) {
         parent = current;
         if (data < current.data) {
