@@ -37,21 +37,21 @@ export class BST implements IBST{
     }
   }
   public inOrder(node: Node) {
-    if (!(node == null)) {
+    if (!(node === null)) {
       this.inOrder(node.left);       
       node.show();  
       this.inOrder(node.right);    
     } 
   }
   public preOrder(node: Node) {
-    if (!(node == null)) {    
+    if (!(node === null)) {    
       node.show()
       this.preOrder(node.left);       
       this.preOrder(node.right);    
     } 
   }
   public postOrder(node: Node) {
-    if (!(node == null)) {    
+    if (!(node === null)) {    
       this.postOrder(node.left);       
       this.postOrder(node.right);
       node.show()
