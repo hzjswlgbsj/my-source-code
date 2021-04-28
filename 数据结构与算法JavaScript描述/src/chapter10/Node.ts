@@ -1,14 +1,14 @@
 export interface INode {
   data: any;
-  left: any;
-  right: any;
+  left: null | INode;
+  right: null | INode;
   show: () => void;
 }
 export default class Node {
   public data: any;
-  public left: any;
-  public right: any;
-  constructor(data: any, left: any, right: any) {
+  public left: null | INode;
+  public right: null | INode;
+  constructor(data: any, left: null | INode, right: null | INode) {
     this.data = data;
     this.left = left;
     this.right = right;
