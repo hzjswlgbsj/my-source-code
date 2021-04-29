@@ -11,6 +11,8 @@ interface IBST {
   find: (value: any) => Node | null;
   remove: (node: Node) => void;
   removeNode: (node: Node, data: any) => void;
+  min: (node: Node) => Node | null; // 查找某个节点最小的后代节点
+  max: (node: Node) => Node | null; // 查找某个节点最大的后代节点
 }
 
 // 二叉查找树
@@ -142,32 +144,45 @@ export class BST implements IBST{
 
     if (node.data === data) {
       // 没有子节点的节点
-      if (node.left === null && node.right === null) {
+      if (!node.left && !node.right) {
         return null;
       }
       // 没有左子节点的节点
-      if (node.left === null) {
+      if (!node.left) {
         return node.right;
       }
       // 没有右子节点的节点
-      if (node.right === null) {
+      if (!node.right) {
         return node.left;
       }
       // 有两个子节点的节点
-      const tempNode = this.getSmallest(node.right);
-      node.data = tempNode.data;
-      node.right = this.removeNode(node.right, tempNode.data);
-      return node; 
+      const tempNode = this.min(node.right);
+      if (tempNode) {
+        node.data = tempNode.data;
+        node.right = this.removeNode(node.right, tempNode.data);
+        return node; 
+      }
     } else if (data < node.data) {
       node.left = this.removeNode(node.left, data);
       return node;
     } else {
       node.right = this.removeNode(node.right, data);
       return node;
-    } 
+    }
+
+    return null
   }
 
-  protected getSmallest(node: INode) {
-
+  public min(node: INode): INode | null {
+    if (node.left) {
+      return this.min(node.left)
+    }
+    return null;
+  }
+  public max(node: INode): INode | null {
+    if (node.right) {
+      return this.max(node.right)
+    }
+    return null;
   }
 }
