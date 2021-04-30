@@ -13,6 +13,7 @@ interface IBST {
   removeNode: (node: Node, data: any) => void;
   min: (node: Node) => Node | null; // 查找某个节点最小的后代节点
   max: (node: Node) => Node | null; // 查找某个节点最大的后代节点
+  updateCount: (node: Node) => Node | null; // 更新某个节点
 }
 
 // 二叉查找树
@@ -110,7 +111,7 @@ export class BST implements IBST{
   // }
 
   // 这种方式可自己控制跳出遍历的时机
-  public find(data: any) {
+  public find(data: any): INode | null {
     var current = this.root;
     while (current != null) {
       if (current.data == data) {
@@ -184,5 +185,12 @@ export class BST implements IBST{
       return this.max(node.right)
     }
     return null;
+  }
+  public updateCount(data: any): INode | null {
+    const node = this.find(data);
+    if (node) {
+      node.count++
+    }
+    return node;
   }
 }
