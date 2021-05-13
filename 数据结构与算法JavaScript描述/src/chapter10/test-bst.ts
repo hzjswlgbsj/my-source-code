@@ -1,4 +1,4 @@
-// 测试第十章的集合（set）数据结构
+// 测试第十章的树数据结构
 import { BST } from './BST';
 import { INode } from './Node';
 
