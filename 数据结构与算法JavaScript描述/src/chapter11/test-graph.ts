@@ -10,3 +10,6 @@ graph.addEdge(0, 2)
 graph.addEdge(1, 3)
 graph.addEdge(2, 4)
 graph.showGraph()
+
+console.log('---------测试dfs---------')
+graph.dfs(0, (v) =>  console.log(`Visited vertex: ${v}`))
