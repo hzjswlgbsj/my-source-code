@@ -21,7 +21,6 @@ export class Graph implements IGraph {
     for (let i = 0; i < this.vertices; i++) {
       this.adj[i] = [];
       this.marked[i] = false;
-      // this.adj[i].push('')
     }
   }
   public addEdge(v: any, w: any) {
@@ -52,14 +51,10 @@ export class Graph implements IGraph {
       }
     }
 
-    console.log('11111111', this.adj, this.adj[v])
-    for (const w in this.adj[v]) {
-      console.log('22222222', w)
-      if (Object.prototype.hasOwnProperty.call(this.adj[v], w)) {
-        console.log('33333333333', this.marked[Number(w)])
-        if (!this.marked[Number(w)]) {
-          this.dfs(w, cb);
-        }
+    for (let i = 0; i < this.adj[v].length; i++) {
+      const w = this.adj[v][i];
+      if (!this.marked[Number(w)]) {
+        this.dfs(w, cb);
       }
     }
   }
