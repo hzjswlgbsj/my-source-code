@@ -4,9 +4,11 @@ interface IGraph {
   edges: number; // 边数量
   adj: any[]; // 邻接表数组
   marked: any[]; // 标识是否被访问过
+  edgeTo: any[]; // 保存从一个顶点到下一个顶点的所有边
   addEdge: (v: any, w: any) => void;
   showGraph: () => void;
   dfs: (v: any) => void;
+  bfs: (v: any) => void;
 }
 
 // 图
@@ -14,6 +16,7 @@ export class Graph implements IGraph {
   public vertices: number = 0;
   public edges: number = 0;
   public adj: any[] = [];
+  public edgeTo: any[] = [];
   public marked: any[] = [];
 
   constructor(v: number) {
@@ -55,6 +58,35 @@ export class Graph implements IGraph {
       const w = this.adj[v][i];
       if (!this.marked[Number(w)]) {
         this.dfs(w, cb);
+      }
+    }
+  }
+
+  /**
+   * (1) 查找与当前顶点相邻的未访问顶点，将其添加到已访问顶点列表及队列中； 
+   * (2) 从图中取出下一个顶点 v，添加到已访问的顶点列表； 
+   * (3) 将所有与 v 相邻的未访问顶点添加到队列。 
+   * @param s 
+   */
+  public bfs(s: any, cb?: (v: any) => void) {
+    const queue = [];
+    this.marked[s] = true;
+    queue.push(s); // 添加到队尾
+    while (queue.length > 0) {
+      const v: any = queue.shift(); // 从队首移除
+      if (typeof cb === 'function') {
+        cb(v)
+      } else {
+        console.log(`Visited vertex: ${v}`)
+      }
+
+       for (let i = 0; i < this.adj[v].length; i++) {
+        const w = this.adj[v][i];
+        if (!this.marked[Number(w)]) {
+          this.edgeTo[w] = v;
+          this.marked[w] = true;
+          queue.push(w);
+        }
       }
     }
   }
