@@ -6,5 +6,5 @@
 // import './chapter7/test-dictionary';
 // import './chapter8/test-hashtable';
 // import './chapter9/test-set';
-import './chapter11/test-graph';
+import './chapter12/test-sort';
 document.title = '测试专用'
