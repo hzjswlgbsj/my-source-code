@@ -1,3 +1,7 @@
+/**
+ * 可以参考十大排序算法（有动图）：https://www.runoob.com/w3cnote/ten-sorting-algorithm.html
+ */
+
 interface ICArray {
   dataStore: any[]; // 
   pos: number; //
