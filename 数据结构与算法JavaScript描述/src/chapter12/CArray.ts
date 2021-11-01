@@ -81,14 +81,17 @@ export class CArray implements ICArray {
    */
   public selectionSort() {
     if (this.dataStore && this.dataStore.length > 0) {
+      // 遍历到倒数第二个值就可以了，最后一个肯定是最大（小）的
       for (let i = 0; i < this.dataStore.length - 1; i++) {
-        let min = i
+        let min = i; // 每次都假设当前遍历的是最小值
+        // 从未排序中找到最小值的下标
         for (let j = i + 1; j < this.dataStore.length; j++) {
           if (this.dataStore[j] < this.dataStore[min]) {
-            min = j
+            min = j // 这就是本轮最小值的下标
           }
+          
+          this.swap(this.dataStore, i, min) // 找到本轮最小的下标后将找到的值与当前值交换位置
         }
-        this.swap(this.dataStore, i, min)
       }
     }
   }
@@ -104,10 +107,17 @@ export class CArray implements ICArray {
     for (let i = 1; i < len; i++) {
       preIndex = i - 1
       current = this.dataStore[i]
+
+      // 每进入一次循环，已经排好的数组长度+i了，如果当前值小于他的前一个值，那么前一个值应该
+      // 放到当前值的这个位置来，然后一直循环做这个判断直到前一个值比当前值小，那当前这个位置
+      // 就是当前值应该放入的位置。而当前值位置用 preIndex + 1表示
       while (preIndex >= 0 && this.dataStore[preIndex] > current) {
+        // 将前一个值放入到当前位置，然后继续用当前值去比较前面的值
         this.dataStore[preIndex + 1] = this.dataStore[preIndex]
-        preIndex--
+        preIndex-- // 前一个值的位置向前推移，继续判断
       }
+
+      // 此时前一个值已经比当前值小了，所以当前位置就是当前值要插入的位置
       this.dataStore[preIndex + 1] = current
     }
   }
