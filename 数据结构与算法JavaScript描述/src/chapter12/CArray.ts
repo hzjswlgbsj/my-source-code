@@ -1,5 +1,5 @@
 /**
- * 可以参考十大排序算法（有动图）：https://www.runoob.com/w3cnote/ten-sorting-algorithm.html
+ * 可以参考十大排序算法（有动图）：https://juejin.cn/post/6844903444365443080#heading-14
  */
 
 interface ICArray {
@@ -121,4 +121,31 @@ export class CArray implements ICArray {
       this.dataStore[preIndex + 1] = current
     }
   }
+
+  /**
+   * 希尔排序，也称递减增量排序算法，是插入排序的一种更高效的改进版本。
+   * 希尔排序的基本思想是：先将整个待排序的记录序列分割成为若干子序列分别进行直接插入排序，
+   * 待整个序列中的记录"基本有序"时，再对全体记录进行依次直接插入排序。
+   * 希尔排序详解：https://zhuanlan.zhihu.com/p/87781731
+   * 
+   */
+  public shellSort() {
+    // 动态计算间隔序列
+    let len = this.dataStore.length
+    let gap = 1
+    while (gap < len / 3) {
+      gap = gap * 3 + 1
+    }
+
+    while (gap >= 1) {
+      for (let i = gap; i < len; i++) {
+        for (let j = i; j >= gap && this.dataStore[j] < this.dataStore[j -gap]; j -= gap) {
+          this.swap(this.dataStore, j, j - gap)
+        }
+      }
+
+      gap = (gap - 1) / 3
+    }
+  }
 }
+
