@@ -130,21 +130,22 @@ export class CArray implements ICArray {
    * 
    */
   public shellSort() {
-    // 动态计算间隔序列
-    let len = this.dataStore.length
+    const len = this.dataStore.length
     let gap = 1
     while (gap < len / 3) {
       gap = gap * 3 + 1
     }
 
+    // 每个增量值执行一遍插入排序
     while (gap >= 1) {
+      // 从增量值开始，从后往前遍历
       for (let i = gap; i < len; i++) {
-        for (let j = i; j >= gap && this.dataStore[j] < this.dataStore[j -gap]; j -= gap) {
+        // 从后往前遍历，如果后面的比前面的小交换位置，然后减掉增量值继续下一次遍历
+        for (let j = i; j >= gap && this.dataStore[j] < this.dataStore[j - gap]; j -= gap) {
           this.swap(this.dataStore, j, j - gap)
         }
       }
-
-      gap = (gap - 1) / 3
+      gap = (gap - 1) / 3 // 一轮后更新增量值
     }
   }
 }
