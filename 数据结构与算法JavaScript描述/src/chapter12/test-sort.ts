@@ -9,5 +9,7 @@ console.log(myNums.toString())
 // myNums.bubbleSort() // 冒泡
 // myNums.selectionSort() // 选择
 // myNums.insertionSort() // 选择
-myNums.shellSort() // 希尔
-console.log(myNums.toString())
+// myNums.shellSort() // 希尔
+const res = myNums.mergeSort(myNums.dataStore) // 归并
+console.log(res)
+// console.log(myNums.toString())

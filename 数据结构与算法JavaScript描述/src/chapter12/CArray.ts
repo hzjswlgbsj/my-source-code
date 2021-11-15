@@ -148,5 +148,44 @@ export class CArray implements ICArray {
       gap = (gap - 1) / 3 // 一轮后更新增量值
     }
   }
+
+  /**
+   * 归并排序。自顶向下递归的实现方式
+   */
+  public mergeSort(arr: any[]): any[] {
+    const len = arr.length
+    if (len < 2) {
+      return arr
+    }
+
+    const middle = Math.floor(len / 2)
+    const left = arr.slice(0, middle)
+    const right = arr.slice(middle)
+    return this.merge(this.mergeSort(left), this.mergeSort(right))
+  }
+
+  /**
+   * 按照大小合并两个数组
+   */
+  public merge(left: any[], right: any[]): any[] {
+    const res: any = []
+    while (left.length > 0 && right.length > 0) {
+      if (left[0] <= right[0]) {
+        res.push(left.shift())
+      } else {
+        res.push(right.shift())
+      }
+    }
+
+    while (left.length > 0) {
+      res.push(left.shift())
+    }
+
+    while (right.length > 0) {
+      res.push(right.shift())
+    }
+
+    return res
+  }
 }
 
