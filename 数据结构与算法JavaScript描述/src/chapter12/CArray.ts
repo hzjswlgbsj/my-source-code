@@ -187,5 +187,65 @@ export class CArray implements ICArray {
 
     return res
   }
+
+  /**
+   * 归并排序。自底向上的实现方式
+   */
+  public mergeSort2() {
+    if (this.dataStore.length < 2) {
+      return
+    }
+
+    let step = 1
+    let left, right
+    while (step < this.dataStore.length) {
+      left = 0
+      right = step
+      while (right + step < this.dataStore.length) {
+        this.merge2(this.dataStore, left, left + step, right, right + step)
+        left = right + step
+        right = left + step
+      }
+
+      if (right < this.dataStore.length) {
+        this.merge2(this.dataStore, left, left + step, right, this.dataStore.length)
+      }
+
+      step *= 2
+    }
+  }
+
+  public merge2(arr: number[], startLeft: number, stopLeft: number, startRight: number, stopRight: number) {
+    let leftArr = new Array(stopLeft - stopLeft + 1)
+    let rightArr = new Array(stopRight - stopRight + 1)
+    let k = startRight
+    for (let i = 0; i< rightArr.length - 1; i++) {
+      rightArr[i] = arr[k]
+      k++
+    }
+
+    k = startLeft
+    for (let i = 0; i< leftArr.length - 1; i++) {
+      leftArr[i] = arr[k]
+      k++
+    }
+
+    leftArr[leftArr.length - 1] = Infinity // 哨兵值
+    rightArr[rightArr.length - 1] = Infinity // 哨兵值
+    let m = 0
+    let n = 0
+    for (let k = startLeft; k < stopRight; k++) {
+      if(leftArr[m] <= rightArr[n]) {
+        arr[k] = leftArr[m]
+        m++
+      } else {
+        arr[k] = rightArr[n]
+        n++
+      }
+    }
+
+    console.log('leftArr', leftArr)
+    console.log('rightArr', rightArr)
+  }
 }
 
