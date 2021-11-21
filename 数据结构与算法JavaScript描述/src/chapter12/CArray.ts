@@ -151,14 +151,19 @@ export class CArray implements ICArray {
 
   /**
    * 归并排序。自顶向下递归的实现方式
+   * 递归的三个条件：
+   * 1. 一个问题的解可以分解为几个子问题的解
+   * 2. 这个问题与分解之后的子问题，除了数据规模不同，求解思路完全一样
+   * 3. 存在递归终止条件
    */
   public mergeSort(arr: any[]): any[] {
-    const len = arr.length
-    if (len < 2) {
+    // mergeSort(p…r) = merge(mergeSort(p…q), mergeSort(q+1…r))
+    // 终止条件：p >= r 不用再继续分解
+    if (arr.length < 2) {
       return arr
     }
 
-    const middle = Math.floor(len / 2)
+    const middle = Math.floor(arr.length / 2)
     const left = arr.slice(0, middle)
     const right = arr.slice(middle)
     return this.merge(this.mergeSort(left), this.mergeSort(right))
@@ -168,7 +173,8 @@ export class CArray implements ICArray {
    * 按照大小合并两个数组
    */
   public merge(left: any[], right: any[]): any[] {
-    const res: any = []
+    const res: any[] = []
+
     while (left.length > 0 && right.length > 0) {
       if (left[0] <= right[0]) {
         res.push(left.shift())
