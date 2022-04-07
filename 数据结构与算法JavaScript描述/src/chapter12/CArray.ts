@@ -73,6 +73,7 @@ export class CArray implements ICArray {
       }
     }
   }
+
   /**
    * 选择排序
    * 1.首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置
@@ -95,6 +96,7 @@ export class CArray implements ICArray {
       }
     }
   }
+  
   /**
    * 插入排序
    * 1.将第一待排序序列第一个元素看做一个有序序列，把第二个元素到最后一个元素当成是未排序序列。
