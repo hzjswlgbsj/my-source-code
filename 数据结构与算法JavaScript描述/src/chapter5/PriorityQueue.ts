@@ -7,7 +7,7 @@ interface Patient {
 
 export class PriorityQueue extends Queue {
   /**
-   * 实现有线队列
+   * 实现优先队列
    * code越小优先级越高，所以每次都应该弹出
    */
   public dequeue() {
